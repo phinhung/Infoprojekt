@@ -9,7 +9,7 @@ public class teleport : MonoBehaviour {
  
     // Use this for initialization
     void Start () {
-        javaClass = new AndroidJavaObject("com.example.vrlibrary.Keys");
+        
     }
 
 	public GameObject play;

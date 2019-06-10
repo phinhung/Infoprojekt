@@ -11,40 +11,46 @@ public class PluginWrapper : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("Start");
-        javaClass = new AndroidJavaObject("com.example.vrlibrary.Keys");
+
  
 		Physics.IgnoreLayerCollision(0, 2);
 	}
 
-
+	public GameObject manager;
 	bool cansnap;
+	bool greif;
 
 
 	void Update () {
-		cansnap = snapzo.GetComponent<snap_allowed> ().snapallow;
+		greif = manager.GetComponent<manager> ().gegriffen;
+		greifen (greif);
+		if (snapzo != null) {
+			cansnap = snapzo.GetComponent<snap_allowed> ().snapallow;
+
+		}
+
 	}
 	public GameObject hand;
 	public GameObject objectA;
 	public Transform objectB;
 	public bool angeschaut=false;
+	public Text mytext;
 
 	public bool snapallowed;
 	Vector3 npos;
 
-	public void greifen(string ok){
-
-		if ((ok == "1") && (angeschaut == true)) {
+	public void greifen(bool grabbed){
+		if ((grabbed == true) && (angeschaut == true)) {
 			if (hand.transform.childCount == 0) {
 				objectA.transform.position = objectB.position;
 				objectA.transform.rotation = Quaternion.Euler(0,0,0);
 				objectA.transform.parent = objectB;
 				objectA.GetComponent<Rigidbody>().useGravity = false;
-			
+
 			}
 
 			}
-		else if ((ok == "1")&&(hand.transform.childCount == 1)){
+		else if ((grabbed == false)&&(hand.transform.childCount == 1)){
 			getpospointer ();
 
 			npos.x = wpos.x;
@@ -75,7 +81,7 @@ public class PluginWrapper : MonoBehaviour {
 
 	public void snap(){
 		
-		OnTriggerStay (snapzo.GetComponent<SphereCollider> ());
+		OnTriggerStay (snapzo.GetComponent<Collider> ());
 	}
 
 
@@ -93,6 +99,7 @@ public class PluginWrapper : MonoBehaviour {
 
 	public void anschauen(){
 		angeschaut = true;
+
 	}
 
 	public void wegschauen(){
