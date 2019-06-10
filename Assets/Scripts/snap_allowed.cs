@@ -42,18 +42,18 @@ public class snap_allowed : MonoBehaviour {
 			//SnapDropZone aktiv/deaktiv setzen
 
 			if (objectisgrabbed == true && (Distancele < alloweddistance | Distanceri < alloweddistance)) {
-				snapzo.GetComponent<SphereCollider> ().enabled = false;
+				snapzo.GetComponent<Collider> ().enabled = false;
 				snapok = false;
 					
 			}
 			if (objectisgrabbed == true && (Distancele > alloweddistance | Distanceri > alloweddistance)) {
-				snapzo.GetComponent<SphereCollider> ().enabled = true;
+				snapzo.GetComponent<Collider> ().enabled = true;
 				snapok = true;
 
 			}
 			
 		} else {
-			snapzo.GetComponent<SphereCollider>().enabled = false;
+			snapzo.GetComponent<Collider>().enabled = false;
 			snapok = false;
 		}
 
@@ -70,7 +70,6 @@ public class snap_allowed : MonoBehaviour {
 
 	public GameObject snapzo;
 	public GameObject objecttosnap;
-	public GameObject planetenbahn;
 	public GameObject snappos;
 	public bool snapallow;
 	public GameObject player;

@@ -14,7 +14,7 @@ public class PluginWrapper : MonoBehaviour {
 		Debug.Log ("Start");
         javaClass = new AndroidJavaObject("com.example.vrlibrary.Keys");
  
-		Physics.IgnoreLayerCollision(8, 2);
+		Physics.IgnoreLayerCollision(0, 2);
 	}
 
 
@@ -87,6 +87,7 @@ public class PluginWrapper : MonoBehaviour {
 			objectA.GetComponent<Collider> ().enabled = false;
 			objecttosnap.transform.position = snappos.transform.position;
 			objectA.GetComponent<Rigidbody> ().useGravity = false;
+			objectA.transform.rotation = snappos.transform.rotation;
 		} 
 	}
 
