@@ -60,7 +60,7 @@ public class PluginWrapper : MonoBehaviour {
 			hand.transform.DetachChildren ();
 			objectA.GetComponent<Rigidbody> ().useGravity = true;
 
-			if ((snapallowed = true)&&(objecttosnap==objectA)&&(cansnap == true)) {
+			if ((snapallowed == true)&&(objecttosnap==objectA)&&(cansnap == true)) {
 				snap ();
 			} else {
 				if (GameObject.Find("DenebBall").name=="DenebBall") {

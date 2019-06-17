@@ -19,6 +19,9 @@ public class manager : MonoBehaviour {
 	public Text mytext2
 	;
 	public Text mytext3;
+	public Text mytext4;
+	public Text mytext5;
+	public Text mytext6;
 	public Text text;
 
 	UInt16[] sensordata = new UInt16[17];
@@ -26,7 +29,7 @@ public class manager : MonoBehaviour {
 	int[] flex = new int[5];
 	int[] min = new int[5];
 	int[] max = new int[5];
-	int[] mom = new int[5];
+	float[] mom = new float[5];
 	bool[] greif = new bool[5];
 
 	const int k1_index = 0;
@@ -138,25 +141,39 @@ public class manager : MonoBehaviour {
 		flex [3] = z1_Bew;
 		flex [4] = d1_Bew;
 
-		for (int i = 0; i <= 4; i++) {
-			setmin (i);
-			setmax (i);
+		for (int m = 0; m <= 4; m++) {
+			setmin (m);
+			setmax (m);
+			mom [m] = ((((float)flex[m])/ ((float)max[m]-(float)min[m])))*100f;
 		}
 
-		if (flex[0] > 57){ greif [0] = true;} else {greif [0] = false;}
+		gegriffen = true;
+		for (int 	j = 0; j <= 4; j++){
+			
+			if (mom [j] > 50) {
+				greif [j] = true;
+			} else {
+				greif [j] = false;
+			}
+		}
+
+		/*if (flex[0] > 57){ greif [0] = true;} else {greif [0] = false;}
 		if (flex[1] > 25){ greif[1] = true;} else {greif [1] = false;}
 		if (flex[2] > 60){ greif[2] = true;} else {greif [2] = false;}
 		if (flex[3] > 125){ greif[3] = true;} else {greif [3] = false;}
-		if (flex[4] > 40){ greif[4] = true;} else {greif [4] = false;}
+		if (flex[4] > 40){ greif[4] = true;} else {greif [4] = false;}*/
 
-		gegriffen = true;
-		for (int i = 0; i <= 4; i++) {
-			if (greif [i] == false) {
+	
+		for (int k = 0; k <= 4; k++) {
+			if (greif [k] == false) {
 				gegriffen = false;
 			}
 		}
 
-		mytext.text = greif [0].ToString () + " " + greif [1].ToString () + " " + greif [2].ToString () + " " + greif [3].ToString () + " " + greif [4].ToString ();
+		mytext4.text = flex [0].ToString () + " " + flex [1].ToString () + " " + flex [2].ToString () + " " + flex [3].ToString () + " " + flex [4].ToString ();
+		mytext.text = mom [0].ToString () + " " + mom [1].ToString () + " " + mom [2].ToString () + " " + mom [3].ToString () + " " + mom [4].ToString ();
+		mytext5.text = max [0].ToString () + " " + max [1].ToString () + " " + max [2].ToString () + " " + max [3].ToString () + " " + max [4].ToString ();
+		mytext6.text = min [0].ToString () + " " + min [1].ToString () + " " + min [2].ToString () + " " + min [3].ToString () + " " + min [4].ToString ();
 		if (gegriffen == true) {
 			mytext2.text = "true";
 		} else {

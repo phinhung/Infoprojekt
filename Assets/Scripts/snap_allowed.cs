@@ -26,10 +26,10 @@ public class snap_allowed : MonoBehaviour {
 
 
 		//prüfen, ob ein Planet gegriffen ist
-		if (right.transform.childCount == 1){
+		if (left.transform.childCount == 1){
 			objectisgrabbed = true;
 		}
-		else if(right.transform.childCount == 0){
+		else if(left.transform.childCount == 0){
 			objectisgrabbed = false;
 		}
 			
