@@ -22,12 +22,14 @@ public class PluginWrapper : MonoBehaviour {
 
 
 	void Update () {
+		hand.transform.rotation = Quaternion.Euler (manager.GetComponent<manager> ().z_Bew, manager.GetComponent<manager> ().y_Bew, manager.GetComponent<manager> ().x_Bew);
 		greif = manager.GetComponent<manager> ().gegriffen;
 		greifen (greif);
 		if (snapzo != null) {
 			cansnap = snapzo.GetComponent<snap_allowed> ().snapallow;
 
 		}
+
 
 	}
 	public GameObject hand;
