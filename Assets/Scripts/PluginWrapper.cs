@@ -39,6 +39,7 @@ public class PluginWrapper : MonoBehaviour {
 	public Text mytext;
 
 	public bool snapallowed;
+	bool wargegriffen;
 	Vector3 npos;
 
 	public void greifen(bool grabbed){
@@ -48,7 +49,8 @@ public class PluginWrapper : MonoBehaviour {
 				objectA.transform.rotation = Quaternion.Euler(0,0,0);
 				objectA.transform.parent = objectB;
 				objectA.GetComponent<Rigidbody>().useGravity = false;
-
+				objectA.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
+			
 			}
 
 			}
@@ -61,7 +63,8 @@ public class PluginWrapper : MonoBehaviour {
 			objectA.transform.position = npos;
 			hand.transform.DetachChildren ();
 			objectA.GetComponent<Rigidbody> ().useGravity = true;
-
+			wargegriffen = false;
+			objectA.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
 			if ((snapallowed == true)&&(objecttosnap==objectA)&&(cansnap == true)) {
 				snap ();
 			} else {

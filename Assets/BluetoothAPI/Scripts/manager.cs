@@ -41,6 +41,7 @@ public class manager : MonoBehaviour {
 	const int y_index = 6;
 	const int z_index = 7;
 	public bool gegriffen;
+	public bool gezeigt=false;
 
 
 	// Use this for initialization
@@ -103,7 +104,29 @@ public class manager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		gegriffen = true;
+		for (int 	j = 0; j <= 4; j++){
 
+			if (mom [j] > 35000) {
+				greif [j] = true;
+			} else {
+				greif [j] = false;
+			}
+		}
+		greif[3]= true;
+		if ((mom [0] > 40000) && (mom [1] > 40000) && (mom [2] > 40000) && (mom [3] < 27000) && (mom [4] > 40000)) 
+		{
+			gezeigt = true;
+			gegriffen = true;
+		} else { gezeigt = false;
+			for (int k = 0; k <= 4; k++) {
+				if (greif [k] == false) {
+					gegriffen = false;
+				}
+
+			}
+
+		}
 		//Synchronous method to receive messages
 		/*if(bluetoothHelper != null)
 		if (bluetoothHelper.Available)
@@ -144,42 +167,29 @@ public class manager : MonoBehaviour {
 		for (int m = 0; m <= 4; m++) {
 			setmin (m);
 			setmax (m);
-			mom [m] = ((((float)flex[m])/ ((float)max[m]-(float)min[m])))*100f;
+			mom [m] = ((((float)flex[m])/ ((float)max[m]-(float)min[m])))*100000f;
 		}
 
-		gegriffen = true;
-		for (int 	j = 0; j <= 4; j++){
+
 			
-			if (mom [j] > 50) {
-				greif [j] = true;
-			} else {
-				greif [j] = false;
-			}
-		}
-
-		/*if (flex[0] > 57){ greif [0] = true;} else {greif [0] = false;}
-		if (flex[1] > 25){ greif[1] = true;} else {greif [1] = false;}
-		if (flex[2] > 60){ greif[2] = true;} else {greif [2] = false;}
-		if (flex[3] > 125){ greif[3] = true;} else {greif [3] = false;}
-		if (flex[4] > 40){ greif[4] = true;} else {greif [4] = false;}*/
-
 	
-		for (int k = 0; k <= 4; k++) {
-			if (greif [k] == false) {
-				gegriffen = false;
-			}
-		}
+
+
+
 
 		mytext4.text = flex [0].ToString () + " " + flex [1].ToString () + " " + flex [2].ToString () + " " + flex [3].ToString () + " " + flex [4].ToString ();
 		mytext.text = mom [0].ToString () + " " + mom [1].ToString () + " " + mom [2].ToString () + " " + mom [3].ToString () + " " + mom [4].ToString ();
 		mytext5.text = max [0].ToString () + " " + max [1].ToString () + " " + max [2].ToString () + " " + max [3].ToString () + " " + max [4].ToString ();
 		mytext6.text = min [0].ToString () + " " + min [1].ToString () + " " + min [2].ToString () + " " + min [3].ToString () + " " + min [4].ToString ();
-		if (gegriffen == true) {
+		/*if (gegriffen == true) {
 			mytext2.text = "true";
 		} else {
 			mytext2.text = "false";
-		}
+		}*/
 
+	
+
+		mytext2.text = gezeigt.ToString ();
 	
 	}
 

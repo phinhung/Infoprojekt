@@ -7,26 +7,39 @@ public class teleport : MonoBehaviour {
     private AndroidJavaObject javaClass;
    
  
-    // Use this for initialization
-    void Start () {
-        
-    }
 
 	public GameObject play;
 	Vector3 newpos;
 
 	public GameObject pointer;
 	public Vector3 wpos;
+	public GameObject manager;
+	public bool z;
+	bool zwischen;
+
+
 
 	public void getpospointer(){
 		wpos = pointer.GetComponent<GvrReticlePointer> ().CurrentRaycastResult.worldPosition;
 		Debug.Log (wpos);
 	}
  
- 
-    public void laufen(string ok)
-    {
-        if (ok == "1") {
+
+	void Update(){
+		manager = GameObject.Find ("Manager");
+		z = manager.GetComponent<manager> ().gezeigt;
+		if(z != zwischen){
+			if ((z == true) && (zwischen == false) ){
+				laufen (z);
+			}
+			zwischen = z;
+
+		}
+	}
+	
+	public void laufen(bool zeig)
+	{	
+		if (zeig == true) {
             getpospointer();
             newpos.x = wpos.x;
             newpos.z = wpos.z;
