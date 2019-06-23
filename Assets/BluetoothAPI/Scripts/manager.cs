@@ -104,29 +104,7 @@ public class manager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		gegriffen = true;
-		for (int 	j = 0; j <= 4; j++){
 
-			if (mom [j] > 35000) {
-				greif [j] = true;
-			} else {
-				greif [j] = false;
-			}
-		}
-		greif[3]= true;
-		if ((mom [0] > 40000) && (mom [1] > 40000) && (mom [2] > 40000) && (mom [3] < 27000) && (mom [4] > 40000)) 
-		{
-			gezeigt = true;
-			gegriffen = true;
-		} else { gezeigt = false;
-			for (int k = 0; k <= 4; k++) {
-				if (greif [k] == false) {
-					gegriffen = false;
-				}
-
-			}
-
-		}
 		//Synchronous method to receive messages
 		/*if(bluetoothHelper != null)
 		if (bluetoothHelper.Available)
@@ -170,7 +148,29 @@ public class manager : MonoBehaviour {
 			mom [m] = ((((float)flex[m])/ ((float)max[m]-(float)min[m])))*100000f;
 		}
 
+		gegriffen = true;
+		for (int 	j = 0; j <= 4; j++){
 
+			if (mom [j] > 33000) {
+				greif [j] = true;
+			} else if (j != 3 ) { 
+				greif [j] = false;
+			}
+		}
+		greif[3]= true;
+		if ((mom [0] > 35000) && (mom [1] > 35000) && (mom [2] > 35000) && (mom [3] < 28000) && (mom [4] > 35000)) 
+		{
+			gezeigt = true;
+			gegriffen = true;
+		} else { gezeigt = false;
+			for (int k = 0; k <= 4; k++) {
+				if (greif [k] == false) {
+					gegriffen = false;
+				}
+
+			}
+
+		}
 			
 	
 
