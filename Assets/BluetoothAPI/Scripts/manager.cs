@@ -15,6 +15,7 @@ public class manager : MonoBehaviour {
 	public int x_Bew;
 	public int y_Bew;
 	public int z_Bew;
+	public float schwellwert;
 	public Text mytext;
 	public Text mytext2
 	;
@@ -145,7 +146,7 @@ public class manager : MonoBehaviour {
 		for (int m = 0; m <= 4; m++) {
 			setmin (m);
 			setmax (m);
-			mom [m] = ((((float)flex[m])/ ((float)max[m]-(float)min[m])))*100000f;
+			mom [m] = ((((float)flex[m]-(float)min[m])/ ((float)max[m]-(float)min[m])))*100000f;
 		}
 
 		gegriffen = true;

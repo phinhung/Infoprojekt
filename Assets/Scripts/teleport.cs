@@ -31,12 +31,17 @@ public class teleport : MonoBehaviour {
 		if(z != zwischen){
 			if ((z == true) && (zwischen == false) ){
 				laufen (z);
+				wait ();
 			}
 			zwischen = z;
 
 		}
 	}
-	
+
+	IEnumerator wait(){
+		yield return new WaitForSeconds (0.1f);
+	}
+
 	public void laufen(bool zeig)
 	{	
 		if (zeig == true) {
